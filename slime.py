@@ -88,9 +88,10 @@ class Slime(pygame.sprite.Sprite):
         if self.isBouncing == True:
             self.current_animation = 1
             self.current_sprite += 0.12
+            self.change_pos(0.25,self.direction)
 
             if self.current_sprite > len(self.bouncing_sprites):
-                    self.change_pos(15,self.direction)
+                    
                     self.current_sprite = 0
                     self.isIdle = True
                     self.isBouncing = False
