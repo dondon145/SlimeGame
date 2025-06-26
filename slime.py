@@ -80,7 +80,27 @@ class Slime(pygame.sprite.Sprite):
         self.dash_sprites.append(pygame.transform.scale(frame_4,(50,50)))
 
     def death_get_frames(self):
-        pass
+        
+        image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/DeathSpritesheet.png')
+        death_spritesheet = spritesheet.SpriteSheet(image)
+
+        frame_0 = death_spritesheet.get_frames(0, 20, 20, BLACK, 0)
+        frame_1 = death_spritesheet.get_frames(0, 20, 20, BLACK, 1)
+        frame_2 = death_spritesheet.get_frames(0, 20, 20, BLACK, 2)
+        frame_3 = death_spritesheet.get_frames(1, 20, 20, BLACK, 0)
+        frame_4 = death_spritesheet.get_frames(1, 20, 20, BLACK, 1)
+        frame_5 = death_spritesheet.get_frames(1, 20, 20, BLACK, 2)
+        frame_6 = death_spritesheet.get_frames(2, 20, 20, BLACK, 0)
+        frame_7 = death_spritesheet.get_frames(2, 20, 20, BLACK, 1)
+
+        self.death_sprites.append(pygame.transform.scale(frame_0,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_1,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_2,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_3,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_4,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_5,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_6,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_7,(50,50)))
 
     def hit_get_frames(self):
         pass
@@ -109,6 +129,10 @@ class Slime(pygame.sprite.Sprite):
     def animate_bouncing(self):
 
         if self.isBouncing == True:
+
+            if self.current_animation != 1:
+                self.current_sprite = 0
+
             self.current_animation = 1
             self.current_sprite += 0.12
             self.change_pos(0.50,self.direction)
@@ -125,7 +149,12 @@ class Slime(pygame.sprite.Sprite):
 
     def animate_dash(self):
         # 5 sprites from bouncing would make up a great dash
+
         if self.isDashing == True:
+
+            if self.current_animation != 2:
+                self.current_sprite = 0
+
             self.current_animation = 2
             self.current_sprite += 0.12
             self.change_pos(2,self.direction)
@@ -140,23 +169,44 @@ class Slime(pygame.sprite.Sprite):
         else :
             return
 
+    def animate_death(self):
+
+        if self.isDead == True:
+
+            if self.current_animation != 3:
+                self.current_sprite = 0
+            if self.current_sprite > len(self.death_sprites)-1:
+                    
+                self.isDead = False
+                self.isBouncing = False
+                self.isDashing = False
+                self.isIdle = False
+                self.current_sprite = -1
+                self.image = self.animations[self.current_animation][int(self.current_sprite)]
+                return
+            elif self.current_sprite <=len(self.death_sprites)-1:
+                self.isIdle = False
+                self.current_animation = 3
+                self.current_sprite += 0.06
+
+                self.image = self.animations[self.current_animation][int(self.current_sprite)]
+        else :
+            return
 
     def animate_hit(self):
         pass
 
-    def animate_death(self):
-        pass
 
 
 
 
     def update(self):
+
         self.animate_idle()
         self.animate_bouncing()
         self.animate_dash()
-
-        
-
+        self.animate_death()
+        print(self.current_sprite)
 
 
     
@@ -215,9 +265,10 @@ class Slime(pygame.sprite.Sprite):
         self.idle_get_frames()
         self.bouncing_get_frames()
         self.dash_get_frames()
+        self.death_get_frames()
 
         # making it easier to switch between actions during game 
-        self.animations = [self.idle_sprites, self.bouncing_sprites, self.dash_sprites, self.hit_sprites, self.death_sprites]
+        self.animations = [self.idle_sprites, self.bouncing_sprites, self.dash_sprites, self.death_sprites, self.hit_sprites,]
         self.current_animation = 0
         self.current_sprite = 0
 
@@ -227,6 +278,11 @@ class Slime(pygame.sprite.Sprite):
         self.direction = 1
         self.direction_is_y = False
         self.direction_is_x = False
+
+        # Characters Stats
+        self.health = 100
+        self.stamina = 100
+        self.mana = 100
 
 
         # this stores all the visual that is being put on the display

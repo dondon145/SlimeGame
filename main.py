@@ -17,41 +17,74 @@ def events():
         # Bouncing Movement
         if key_list[K_a]== True:
             if event.type == pygame.KEYDOWN:
-                player.isBouncing = True
-                player.isIdle = False
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = -1
+                if key_list[K_SPACE]== True:
+                    if event.type == pygame.KEYDOWN:
+                        player.isDashing = True
+                        player.isIdle = False
+                        player.isBouncing = False
+                        player.direction_is_y = False
+                        player.direction_is_x = True
+                        player.direction = -1
+                else:
+                    player.isBouncing = True
+                    player.isIdle = False
+                    player.direction_is_y = False
+                    player.direction_is_x = True
+                    player.direction = -1
+
         elif key_list[K_d]== True:
             if event.type == pygame.KEYDOWN:
-                player.isBouncing = True
-                player.isIdle = False
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = 1
+                if key_list[K_SPACE]== True:
+                    if event.type == pygame.KEYDOWN:
+                        player.isDashing = True
+                        player.isIdle = False
+                        player.isBouncing = False
+                        player.direction_is_y = False
+                        player.direction_is_x = True
+                        player.direction = 1
+                else:
+                    player.isBouncing = True
+                    player.isIdle = False
+                    player.direction_is_y = False
+                    player.direction_is_x = True
+                    player.direction = 1
+
         elif key_list[K_w]== True:
             if event.type == pygame.KEYDOWN:
-                player.isBouncing = True
-                player.isIdle = False
-                player.direction_is_y = True
-                player.direction_is_x = False
-                player.direction = -1
+                if key_list[K_SPACE]== True:
+                    if event.type == pygame.KEYDOWN:
+                        player.isDashing = True
+                        player.isIdle = False
+                        player.isBouncing = False
+                        player.direction_is_y = True
+                        player.direction_is_x = False
+                        player.direction = -1
+                else:
+                    player.isBouncing = True
+                    player.isIdle = False
+                    player.direction_is_y = True
+                    player.direction_is_x = False
+                    player.direction = -1
+                    
         elif key_list[K_s]== True:
             if event.type == pygame.KEYDOWN:
-                player.isBouncing = True
-                player.isIdle = False
-                player.direction_is_y = True
-                player.direction_is_x = False
-                player.direction = 1
+                if key_list[K_SPACE]== True:
+                    if event.type == pygame.KEYDOWN:
+                        player.isDashing = True
+                        player.isIdle = False
+                        player.isBouncing = False
+                        player.direction_is_y = True
+                        player.direction_is_x = False
+                        player.direction = 1
+                else:
+                    player.isBouncing = True
+                    player.isIdle = False
+                    player.direction_is_y = True
+                    player.direction_is_x = False
+                    player.direction = 1
 
         # Dashing Movement
-        if key_list[K_SPACE]== True:
-            if event.type == pygame.KEYDOWN:
-                player.isDashing = True
-                player.isIdle = False
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = -1
+        
 
 WIDTH = 800
 HEIGHT = 800
