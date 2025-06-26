@@ -14,6 +14,7 @@ def events():
 
         key_list = pygame.key.get_pressed()
 
+        # Bouncing Movement
         if key_list[K_a]== True:
             if event.type == pygame.KEYDOWN:
                 player.isBouncing = True
@@ -43,6 +44,14 @@ def events():
                 player.direction_is_x = False
                 player.direction = 1
 
+        # Dashing Movement
+        if key_list[K_SPACE]== True:
+            if event.type == pygame.KEYDOWN:
+                player.isDashing = True
+                player.isIdle = False
+                player.direction_is_y = False
+                player.direction_is_x = True
+                player.direction = -1
 
 WIDTH = 800
 HEIGHT = 800
