@@ -37,7 +37,8 @@ class Slime(pygame.sprite.Sprite):
 
 
     def bouncing_get_frames(self):
-        
+        global BLACK
+
         image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/BouncingSpritesheet.png')
         bouncing_spritesheet = spritesheet.SpriteSheet(image)
 
@@ -63,6 +64,8 @@ class Slime(pygame.sprite.Sprite):
 
     def dash_get_frames(self):
 
+        global BLACK
+
         # There is no initial spritesheet for dash, but few frames from bouncing will make up a solid dashing animation
         image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/BouncingSpritesheet.png')
         dash_spritesheet = spritesheet.SpriteSheet(image)
@@ -81,17 +84,19 @@ class Slime(pygame.sprite.Sprite):
 
     def death_get_frames(self):
         
+        global BLACK
+
         image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/DeathSpritesheet.png')
         death_spritesheet = spritesheet.SpriteSheet(image)
 
         frame_0 = death_spritesheet.get_frames(0, 20, 20, BLACK, 0)
-        frame_1 = death_spritesheet.get_frames(0, 20, 20, BLACK, 1)
-        frame_2 = death_spritesheet.get_frames(0, 20, 20, BLACK, 2)
-        frame_3 = death_spritesheet.get_frames(1, 20, 20, BLACK, 0)
+        frame_1 = death_spritesheet.get_frames(1, 20, 20, BLACK, 0)
+        frame_2 = death_spritesheet.get_frames(2, 20, 20, BLACK, 0)
+        frame_3 = death_spritesheet.get_frames(0, 20, 20, BLACK, 1)
         frame_4 = death_spritesheet.get_frames(1, 20, 20, BLACK, 1)
-        frame_5 = death_spritesheet.get_frames(1, 20, 20, BLACK, 2)
-        frame_6 = death_spritesheet.get_frames(2, 20, 20, BLACK, 0)
-        frame_7 = death_spritesheet.get_frames(2, 20, 20, BLACK, 1)
+        frame_5 = death_spritesheet.get_frames(2, 20, 20, BLACK, 1)
+        frame_6 = death_spritesheet.get_frames(0, 20, 20, BLACK, 2)
+        frame_7 = death_spritesheet.get_frames(1, 20, 20, BLACK, 2)
 
         self.death_sprites.append(pygame.transform.scale(frame_0,(50,50)))
         self.death_sprites.append(pygame.transform.scale(frame_1,(50,50)))
@@ -103,7 +108,28 @@ class Slime(pygame.sprite.Sprite):
         self.death_sprites.append(pygame.transform.scale(frame_7,(50,50)))
 
     def hit_get_frames(self):
-        pass
+
+        global BLACK
+
+        # separating spritesheet into multiple frames
+        # makes it possible to stich it all together later into an animation
+        image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/HitSpritesheet.png')
+        idle_spritesheet = spritesheet.SpriteSheet(image)
+        frame_0 = idle_spritesheet.get_frames(0, 16, 16, BLACK, 0)
+        frame_1 = idle_spritesheet.get_frames(1, 16, 16, BLACK, 0)
+        frame_2 = idle_spritesheet.get_frames(0, 16, 16, BLACK, 1)
+        frame_3 = idle_spritesheet.get_frames(1, 16, 16, BLACK, 1)
+        frame_4 = idle_spritesheet.get_frames(0, 16, 16, BLACK, 2)
+        frame_5 = idle_spritesheet.get_frames(1, 16, 16, BLACK, 2)
+
+        # the sprites are too small, so rescaling them is better for visual and comfort 
+        self.idle_sprites.append(pygame.transform.scale(frame_0,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_1,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_2,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_3,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_4,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_5,(50,50)))
+
 
 
 
@@ -248,10 +274,10 @@ class Slime(pygame.sprite.Sprite):
         super().__init__()
 
         # actions booleans
-        self.isIdle = True
+        self.isIdle = False
         self.isBouncing = False
         self.isHit = False
-        self.isDead = False
+        self.isDead = True
         self.isDashing = False
 
         # all sprites for each action
