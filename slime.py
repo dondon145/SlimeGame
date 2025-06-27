@@ -7,6 +7,7 @@ pygame.init()
 BLACK = (0,0,0,0)
 RED = (255,0,0)
 BACKGROUND = (80,160,80)
+count = 0
 
 class Slime(pygame.sprite.Sprite):
     
@@ -126,11 +127,16 @@ class Slime(pygame.sprite.Sprite):
     def animate_idle(self):
 
         if self.isIdle == True:
+            if self.current_animation != 0:
+                self.current_animation = 0
+                self.current_sprite = 0
+
             self.current_animation = 0
             self.current_sprite += 0.12
 
             if self.current_sprite > len(self.idle_sprites):
                 self.current_sprite = 0
+                return
 
             self.image = self.animations[self.current_animation][int(self.current_sprite)]
         else :
@@ -143,6 +149,7 @@ class Slime(pygame.sprite.Sprite):
         if self.isBouncing == True:
 
             if self.current_animation != 1:
+                self.current_animation = 1
                 self.current_sprite = 0
 
             self.current_animation = 1
@@ -165,6 +172,7 @@ class Slime(pygame.sprite.Sprite):
         if self.isDashing == True:
 
             if self.current_animation != 2:
+                self.current_animation = 2
                 self.current_sprite = 0
 
             self.current_animation = 2
@@ -176,6 +184,7 @@ class Slime(pygame.sprite.Sprite):
                     self.current_sprite = 0
                     self.isIdle = True
                     self.isDashing = False
+                    return
 
             self.image = self.animations[self.current_animation][int(self.current_sprite)]
         else :
@@ -237,11 +246,18 @@ class Slime(pygame.sprite.Sprite):
 
     def update(self):
 
+        global count 
+        count += 1
         self.animate_idle()
         self.animate_bouncing()
         self.animate_dash()
         self.animate_death()
         self.animate_hit()
+        if count == 10:
+            #print("Current Sprite: ",self.current_sprite)
+            #print("Current Animation: ",self.current_animation)
+            count = 0
+        #print(count)
 
 
     
