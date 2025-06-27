@@ -175,7 +175,7 @@ class Slime(pygame.sprite.Sprite):
 
             if self.current_animation != 3:
                 self.current_sprite = 0
-            if self.current_sprite > len(self.death_sprites)-1:
+            if self.current_sprite > (len(self.death_sprites))-1:
                     
                 self.isDead = False
                 self.isBouncing = False
@@ -184,10 +184,10 @@ class Slime(pygame.sprite.Sprite):
                 self.current_sprite = -1
                 self.image = self.animations[self.current_animation][int(self.current_sprite)]
                 return
-            elif self.current_sprite <=len(self.death_sprites)-1:
+            elif self.current_sprite <=(len(self.death_sprites))-1:
                 self.isIdle = False
                 self.current_animation = 3
-                self.current_sprite += 0.06
+                self.current_sprite += 0.12
 
                 self.image = self.animations[self.current_animation][int(self.current_sprite)]
         else :
