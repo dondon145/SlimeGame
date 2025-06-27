@@ -14,7 +14,14 @@ def events():
 
         key_list = pygame.key.get_pressed()
 
-        # Bouncing Movement
+        # Current hit and Death trigger
+        if key_list[K_h]== True:
+            if event.type == pygame.KEYDOWN:
+                player.isIdle = False
+                player.isHit = True
+
+        # Bouncing Movement and Dashing Movement
+
         if key_list[K_a]== True:
             if event.type == pygame.KEYDOWN:
                 if key_list[K_SPACE]== True:
@@ -82,8 +89,6 @@ def events():
                     player.direction_is_y = True
                     player.direction_is_x = False
                     player.direction = 1
-
-        # Dashing Movement
         
 
 WIDTH = 800
