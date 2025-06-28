@@ -254,8 +254,9 @@ class Slime(pygame.sprite.Sprite):
         self.animate_death()
         self.animate_hit()
         if count == 10:
-            #print("Current Sprite: ",self.current_sprite)
-            #print("Current Animation: ",self.current_animation)
+            print("Current Sprite: ",self.current_sprite)
+            print("Current Animation: ",self.current_animation)
+            print(self.isDashing)
             count = 0
         #print(count)
 

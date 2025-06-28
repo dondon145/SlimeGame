@@ -128,8 +128,10 @@ def events():
             print("works")
             print(count)
             if key_list[K_a]== True and event.type == KEYDOWN:
-                if count == 34:
+                if count == 1:
                      player.isIdle = True
+                     player.isDashing = False
+                     count = 0
                      return
                 print("also works")
                 player.isBouncing = False
@@ -139,10 +141,11 @@ def events():
                 player.direction_is_x = True
                 player.direction = -1
                 count +=1
-                return count
             elif key_list[K_d]== True and event.type == KEYDOWN:
-                if count == 34:
+                if count == 1:
                     player.isIdle = True
+                    player.isDashing = False
+                    count = 0
                     return 
                 print('also works')
                 player.isBouncing = False
@@ -152,10 +155,11 @@ def events():
                 player.direction_is_x = True
                 player.direction = 1
                 count+= 1
-                return count
             elif key_list[K_w]== True and event.type == KEYDOWN:
-                if count == 34:
+                if count == 1:
                     player.isIdle = True
+                    player.isDashing = False
+                    count = 0
                     return
                 print('also works')
                 player.isBouncing = False
@@ -165,11 +169,12 @@ def events():
                 player.direction_is_x = False
                 player.direction = -1
                 count +=1
-                return count
             elif key_list[K_s]== True and event.type == KEYDOWN:
-                if count == 34:
+                if count == 1:
                     player.isIdle = True
-                    return count
+                    player.isDashing = False
+                    count = 0
+                    return 
                 print('also works')
                 player.isBouncing = False
                 player.isIdle = False
@@ -178,10 +183,8 @@ def events():
                 player.direction_is_x = False
                 player.direction = 1
                 count += 1
-                return count
             else :
                  print("No keys")
-                 return count
             
 
         # BOUNCING/DASHING LEFT
