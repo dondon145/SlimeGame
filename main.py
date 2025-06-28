@@ -107,16 +107,82 @@ pygame.init()
                     player.direction = 1
 """
 
+count = 0
 
 def events():
     global pressed
     global running
+    global count
+    
 
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
-
+        
+        
         key_list = pygame.key.get_pressed()
+        
+        # DASH 
+
+        if key_list[K_SPACE]== True and event.type == KEYDOWN:
+            print("works")
+            print(count)
+            if key_list[K_a]== True and event.type == KEYDOWN:
+                if count == 34:
+                     player.isIdle = True
+                     return
+                print("also works")
+                player.isBouncing = False
+                player.isIdle = False
+                player.isDashing = True
+                player.direction_is_y = False
+                player.direction_is_x = True
+                player.direction = -1
+                count +=1
+                return count
+            elif key_list[K_d]== True and event.type == KEYDOWN:
+                if count == 34:
+                    player.isIdle = True
+                    return 
+                print('also works')
+                player.isBouncing = False
+                player.isIdle = False
+                player.isDashing = True
+                player.direction_is_y = False
+                player.direction_is_x = True
+                player.direction = 1
+                count+= 1
+                return count
+            elif key_list[K_w]== True and event.type == KEYDOWN:
+                if count == 34:
+                    player.isIdle = True
+                    return
+                print('also works')
+                player.isBouncing = False
+                player.isIdle = False
+                player.isDashing = True
+                player.direction_is_y = True
+                player.direction_is_x = False
+                player.direction = -1
+                count +=1
+                return count
+            elif key_list[K_s]== True and event.type == KEYDOWN:
+                if count == 34:
+                    player.isIdle = True
+                    return count
+                print('also works')
+                player.isBouncing = False
+                player.isIdle = False
+                player.isDashing = True
+                player.direction_is_y = True
+                player.direction_is_x = False
+                player.direction = 1
+                count += 1
+                return count
+            else :
+                 print("No keys")
+                 return count
+            
 
         # BOUNCING/DASHING LEFT
         if key_list[K_a]== True:
@@ -152,7 +218,7 @@ def events():
             if pressed[K_a]== 'DOWN':
                 pressed[K_a]= 'UP'
 
-        # BOUNCING/DASHING RIGHT WORKING
+        # BOUNCINGIGHT WORKING
         if key_list[K_d]== True and pressed[K_d]== 'DOWN':
                 player.isBouncing = True
                 player.isIdle = False
@@ -165,7 +231,7 @@ def events():
             if pressed[K_d]== 'DOWN':
                 pressed[K_d]= 'UP'
 
-        # BOUNCING/DASHING UP WORKING
+        # BOUNCING UP WORKING
         if key_list[K_w]== True and pressed[K_w]== 'DOWN':
                 player.isBouncing = True
                 player.isIdle = False
@@ -173,12 +239,12 @@ def events():
                 player.direction_is_x = False
                 player.direction = -1
 
-        # BOUNCING/DASHING UP NOT WORKING
+        # BOUNCING UP NOT WORKING
         if key_list[K_w]== False and event.type == KEYUP:
             if pressed[K_w]== 'DOWN':
                 pressed[K_w]= 'UP'
 
-        # BOUNCING/DASHING DOWN WORKING
+        # BOUNCING DOWN WORKING
         if key_list[K_s]== True and pressed[K_s]== 'DOWN':
                 player.isBouncing = True
                 player.isIdle = False
@@ -186,22 +252,13 @@ def events():
                 player.direction_is_x = False
                 player.direction = 1
 
-        # BOUNCING/DAHING DOWN NOT WORKING
+        # BOUNCING DOWN NOT WORKING
         if key_list[K_s]== False and event.type == KEYUP:
             if pressed[K_s]== 'DOWN':
                 pressed[K_s]= 'UP'
+
+        
             
-            
-
-
-
-
-
-
-
-
-
-
 WIDTH = 800
 HEIGHT = 800
 BACKGROUND = (80,160,80)
@@ -220,7 +277,7 @@ player = slime.Slime(slime_pos_x, slime_pos_y)
 moving_objects = pygame.sprite.Group()
 moving_objects.add(player)
 
-pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP", K_SPACE: "UP" }
+pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP"}
 
 while running:
     DISPLAYSURF.fill(BACKGROUND)
