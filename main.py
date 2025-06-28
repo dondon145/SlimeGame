@@ -122,44 +122,25 @@ def events():
         if key_list[K_a]== True:
             if event.type == KEYDOWN:
                 pressed[K_a]= 'DOWN'
-                if key_list[K_SPACE]== True:
-                    if event.type == KEYDOWN:
-                        pressed[K_SPACE]= "DOWN"
+
         # BOUNCING/DASHING RIGHT  
         if key_list[K_d]== True:
             if event.type == KEYDOWN:
                 pressed[K_d]= "DOWN"
-                if key_list[K_SPACE]== True:
-                    if event.type == KEYDOWN:
-                        pressed[K_SPACE]= "DOWN"
 
         # BOUNCING/DASHING UP
         if key_list[K_w]== True:
             if event.type == KEYDOWN:
                 pressed[K_w]= 'DOWN'
-                if key_list[K_SPACE]== True:
-                    if event.type == KEYDOWN:
-                        pressed[K_SPACE]= "DOWN"
 
         # BOUNCING/DASHING DOWN
         if key_list[K_s]== True:
             if event.type == KEYDOWN:
                 pressed[K_s]= 'DOWN'
-                if key_list[K_SPACE]== True:
-                    if event.type == KEYDOWN:
-                        pressed[K_SPACE]= "DOWN"
                 
 
         # BOUNCING/DASHING LEFT WORKING
         if key_list[K_a]== True and pressed[K_a]== 'DOWN':
-            if key_list[K_SPACE]== True and pressed[K_SPACE]== 'DOWN':
-                player.isDashing = True
-                player.isIdle = False
-                player.isBouncing = False
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = -1
-            else:
                 player.isBouncing = True
                 player.isIdle = False
                 player.direction_is_y = False
@@ -173,14 +154,6 @@ def events():
 
         # BOUNCING/DASHING RIGHT WORKING
         if key_list[K_d]== True and pressed[K_d]== 'DOWN':
-            if key_list[K_SPACE]== True and pressed[K_SPACE]== 'DOWN':
-                player.isDashing = True
-                player.isIdle = False
-                player.isBouncing = False
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = 1
-            else:
                 player.isBouncing = True
                 player.isIdle = False
                 player.direction_is_y = False
@@ -194,14 +167,6 @@ def events():
 
         # BOUNCING/DASHING UP WORKING
         if key_list[K_w]== True and pressed[K_w]== 'DOWN':
-            if key_list[K_SPACE]== True and pressed[K_SPACE]== 'DOWN':
-                player.isDashing = True
-                player.isIdle = False
-                player.isBouncing = False
-                player.direction_is_y = True
-                player.direction_is_x = False
-                player.direction = -1
-            else:
                 player.isBouncing = True
                 player.isIdle = False
                 player.direction_is_y = True
@@ -215,14 +180,6 @@ def events():
 
         # BOUNCING/DASHING DOWN WORKING
         if key_list[K_s]== True and pressed[K_s]== 'DOWN':
-            if key_list[K_SPACE]== True and pressed[K_SPACE]== 'DOWN':
-                player.isDashing = True
-                player.isIdle = False
-                player.isBouncing = False
-                player.direction_is_y = True
-                player.direction_is_x = False
-                player.direction = 1
-            else :
                 player.isBouncing = True
                 player.isIdle = False
                 player.direction_is_y = True
@@ -233,14 +190,6 @@ def events():
         if key_list[K_s]== False and event.type == KEYUP:
             if pressed[K_s]== 'DOWN':
                 pressed[K_s]= 'UP'
-        
-        # SPACE BAR RELEASED AND DASHING STOPPED
-        if key_list[K_SPACE]== False :
-            player.isDashing = False
-            player.isBouncing = True
-            if pressed[K_SPACE]== 'DOWN':
-                pressed[K_SPACE]= 'UP'
-            
             
             
 
