@@ -278,10 +278,10 @@ pygame.display.set_caption("Slime Game")
 running = True
 
 
-slime_pos_x = 350
+slime_pos_x = 250
 slime_pos_y = 350
 
-player = slime.Slime(slime_pos_x, slime_pos_y)
+player = slime.Slime(slime_pos_x, slime_pos_y, 37, 37)
 moving_objects = pygame.sprite.Group()
 moving_objects.add(player)
 

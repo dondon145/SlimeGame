@@ -12,7 +12,7 @@ count = 0
 class Slime(pygame.sprite.Sprite):
     
     
-    def idle_get_frames(self):
+    def idle_get_frames(self, width, height):
         global BLACK
 
 
@@ -28,15 +28,15 @@ class Slime(pygame.sprite.Sprite):
         frame_5 = idle_spritesheet.get_frames(1, 16, 16, BLACK, 2)
 
         # the sprites are too small, so rescaling them is better for visual and comfort 
-        self.idle_sprites.append(pygame.transform.scale(frame_0,(50,50)))
-        self.idle_sprites.append(pygame.transform.scale(frame_1,(50,50)))
-        self.idle_sprites.append(pygame.transform.scale(frame_2,(50,50)))
-        self.idle_sprites.append(pygame.transform.scale(frame_3,(50,50)))
-        self.idle_sprites.append(pygame.transform.scale(frame_4,(50,50)))
-        self.idle_sprites.append(pygame.transform.scale(frame_5,(50,50)))
+        self.idle_sprites.append(pygame.transform.scale(frame_0,(width,height)))
+        self.idle_sprites.append(pygame.transform.scale(frame_1,(width,height)))
+        self.idle_sprites.append(pygame.transform.scale(frame_2,(width,height)))
+        self.idle_sprites.append(pygame.transform.scale(frame_3,(width,height)))
+        self.idle_sprites.append(pygame.transform.scale(frame_4,(width,height)))
+        self.idle_sprites.append(pygame.transform.scale(frame_5,(width,height)))
 
 
-    def bouncing_get_frames(self):
+    def bouncing_get_frames(self, width, height):
         global BLACK
 
         image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/BouncingSpritesheet.png')
@@ -53,16 +53,17 @@ class Slime(pygame.sprite.Sprite):
         frame_6 = bouncing_spritesheet.get_frames(0, 16, 16, BLACK, 2)
 
         # the sprites are too small, so rescaling them is better for visual and comfort 
-        self.bouncing_sprites.append(pygame.transform.scale(frame_0,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_1,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_2,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_3,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_4,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_5,(50,50)))
-        self.bouncing_sprites.append(pygame.transform.scale(frame_6,(50,50)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_0,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_1,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_2,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_3,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_4,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_5,(width,height)))
+        self.bouncing_sprites.append(pygame.transform.scale(frame_6,(width,height)))
 
 
-    def dash_get_frames(self):
+
+    def dash_get_frames(self, width, height):
         global BLACK
 
         # There is no initial spritesheet for dash, but few frames from bouncing will make up a solid dashing animation
@@ -75,13 +76,13 @@ class Slime(pygame.sprite.Sprite):
         frame_3 = dash_spritesheet.get_frames(1, 16, 16, BLACK, 0)
         frame_4 = dash_spritesheet.get_frames(0, 16, 16, BLACK, 0)
 
-        self.dash_sprites.append(pygame.transform.scale(frame_0,(50,50)))
-        self.dash_sprites.append(pygame.transform.scale(frame_1,(50,50)))
-        self.dash_sprites.append(pygame.transform.scale(frame_2,(50,50)))
-        self.dash_sprites.append(pygame.transform.scale(frame_3,(50,50)))
-        self.dash_sprites.append(pygame.transform.scale(frame_4,(50,50)))
+        self.dash_sprites.append(pygame.transform.scale(frame_0,(width,height)))
+        self.dash_sprites.append(pygame.transform.scale(frame_1,(width,height)))
+        self.dash_sprites.append(pygame.transform.scale(frame_2,(width,height)))
+        self.dash_sprites.append(pygame.transform.scale(frame_3,(width,height)))
+        self.dash_sprites.append(pygame.transform.scale(frame_4,(width,height)))
 
-    def death_get_frames(self):
+    def death_get_frames(self, width, height):
         global BLACK
 
         image = pygame.image.load('/home/big-orange/Desktop/SlimeGame/Assets/DeathSpritesheet.png')
@@ -96,16 +97,17 @@ class Slime(pygame.sprite.Sprite):
         frame_6 = death_spritesheet.get_frames(0, 20, 20, BLACK, 2)
         frame_7 = death_spritesheet.get_frames(1, 20, 20, BLACK, 2)
 
-        self.death_sprites.append(pygame.transform.scale(frame_0,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_1,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_2,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_3,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_4,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_5,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_6,(50,50)))
-        self.death_sprites.append(pygame.transform.scale(frame_7,(50,50)))
+        self.death_sprites.append(pygame.transform.scale(frame_0,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_1,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_2,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_3,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_4,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_5,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_6,(width,height)))
+        self.death_sprites.append(pygame.transform.scale(frame_7,(width,height)))
 
-    def hit_get_frames(self):
+
+    def hit_get_frames(self, width, height):
         global BLACK
 
         # separating spritesheet into multiple frames
@@ -118,10 +120,11 @@ class Slime(pygame.sprite.Sprite):
         frame_3 = hit_spritesheet.get_frames(1, 16, 16, BLACK, 1)
 
         # the sprites are too small, so rescaling them is better for visual and comfort 
-        self.hit_sprites.append(pygame.transform.scale(frame_0,(50,50)))
-        self.hit_sprites.append(pygame.transform.scale(frame_1,(50,50)))
-        self.hit_sprites.append(pygame.transform.scale(frame_2,(50,50)))
-        self.hit_sprites.append(pygame.transform.scale(frame_3,(50,50)))
+        self.hit_sprites.append(pygame.transform.scale(frame_0,(width,height)))
+        self.hit_sprites.append(pygame.transform.scale(frame_1,(width,height)))
+        self.hit_sprites.append(pygame.transform.scale(frame_2,(width,height)))
+        self.hit_sprites.append(pygame.transform.scale(frame_3,(width,height)))
+        
 
 
     def animate_idle(self):
@@ -294,7 +297,7 @@ class Slime(pygame.sprite.Sprite):
 
 
 
-    def __init__(self, position_x, position_y):
+    def __init__(self, position_x, position_y, width, height):
         
         # initialising the super class, (pygame.sprite.Sprite)
         super().__init__()
@@ -314,11 +317,11 @@ class Slime(pygame.sprite.Sprite):
         self.death_sprites = []
 
         # getting all sprites for each action 
-        self.idle_get_frames()
-        self.bouncing_get_frames()
-        self.dash_get_frames()
-        self.death_get_frames()
-        self.hit_get_frames()
+        self.idle_get_frames(width, height)
+        self.bouncing_get_frames(width, height)
+        self.dash_get_frames(width, height)
+        self.death_get_frames(width, height)
+        self.hit_get_frames(width, height)
 
         # making it easier to switch between actions during game 
         self.animations = [self.idle_sprites, self.bouncing_sprites, self.dash_sprites, self.death_sprites, self.hit_sprites,]
@@ -339,7 +342,7 @@ class Slime(pygame.sprite.Sprite):
 
 
         # this stores all the visual that is being put on the display
-        self.image = pygame.Surface((50,50))
+        self.image = pygame.Surface((width,height))
         self.image = self.animations[self.current_animation][self.current_sprite]
         self.rect = self.image.get_rect()
         self.rect.topleft = [self.pos_x, self.pos_y]

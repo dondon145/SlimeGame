@@ -47,7 +47,7 @@ class Training_Dummy(pygame.sprite.Sprite):
         self.hit_animation = []
         self.all_animations = [self.idle_animation, self.hit_animation]
 
-        self.get_idle_frames(150,33, 36)
+        self.get_idle_frames(100,33, 36)
         # Booleans
         self.isHit = False
         self.isIdle = True
@@ -55,7 +55,7 @@ class Training_Dummy(pygame.sprite.Sprite):
         # 
         self.pos_x = position_x
         self.pos_y = position_y
-        self.image = pygame.Surface([150,150])
+        self.image = pygame.Surface([100,100])
         self.rect = self.image.get_rect()
         self.rect.topleft = [self.pos_x, self.pos_y]
 
