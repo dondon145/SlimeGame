@@ -124,67 +124,70 @@ def events():
         
         # DASH 
 
-        if key_list[K_SPACE]== True and event.type == KEYDOWN:
+        if key_list[K_SPACE]:
             print("works")
-            print(count)
+
             if key_list[K_a]== True and event.type == KEYDOWN:
-                if count == 1:
-                     player.isIdle = True
-                     player.isDashing = False
-                     count = 0
-                     return
-                print("also works")
+                print('also works')
+                pressed[K_SPACE]= "DOWN"
                 player.isBouncing = False
+                if player.isBouncing == False:
+                    print("bouncing")
                 player.isIdle = False
+                if player.isIdle == False :
+                    print('idle')
                 player.isDashing = True
                 player.direction_is_y = False
                 player.direction_is_x = True
                 player.direction = -1
-                count +=1
-            elif key_list[K_d]== True and event.type == KEYDOWN:
-                if count == 1:
-                    player.isIdle = True
-                    player.isDashing = False
-                    count = 0
-                    return 
-                print('also works')
-                player.isBouncing = False
-                player.isIdle = False
-                player.isDashing = True
-                player.direction_is_y = False
-                player.direction_is_x = True
-                player.direction = 1
-                count+= 1
+
             elif key_list[K_w]== True and event.type == KEYDOWN:
-                if count == 1:
-                    player.isIdle = True
-                    player.isDashing = False
-                    count = 0
-                    return
                 print('also works')
+                pressed[K_SPACE]= "DOWN"
                 player.isBouncing = False
+                if player.isBouncing == False:
+                    print("bouncing")
                 player.isIdle = False
+                if player.isIdle == False :
+                    print('idle')
                 player.isDashing = True
                 player.direction_is_y = True
                 player.direction_is_x = False
                 player.direction = -1
-                count +=1
             elif key_list[K_s]== True and event.type == KEYDOWN:
-                if count == 1:
-                    player.isIdle = True
-                    player.isDashing = False
-                    count = 0
-                    return 
                 print('also works')
+                pressed[K_SPACE]= "DOWN"
                 player.isBouncing = False
+                if player.isBouncing == False:
+                    print("bouncing")
                 player.isIdle = False
+                if player.isIdle == False :
+                    print('idle')
                 player.isDashing = True
                 player.direction_is_y = True
                 player.direction_is_x = False
                 player.direction = 1
-                count += 1
-            else :
-                 print("No keys")
+
+            elif key_list[K_d]== True and event.type == KEYDOWN:
+                print('also works')
+                pressed[K_SPACE]= "DOWN"
+                player.isBouncing = False
+                if player.isBouncing == False:
+                    print("bouncing")
+                player.isIdle = False
+                if player.isIdle == False :
+                    print('idle')
+                player.isDashing = True
+                player.direction_is_y = False
+                player.direction_is_x = True
+                player.direction = 1
+        if event.type == KEYUP:
+            pressed[K_SPACE]= "UP"
+            player.isDashing = False
+            pressed[K_d]= "UP"
+            pressed[K_a]= "UP"
+            player.isBouncing = False
+            player.isIdle = True
             
 
         # BOUNCING/DASHING LEFT
@@ -195,7 +198,8 @@ def events():
         # BOUNCING/DASHING RIGHT  
         if key_list[K_d]== True:
             if event.type == KEYDOWN:
-                pressed[K_d]= "DOWN"
+                if pressed[K_SPACE]== "UP":
+                    pressed[K_d]= "DOWN"
 
         # BOUNCING/DASHING UP
         if key_list[K_w]== True:
@@ -280,7 +284,7 @@ player = slime.Slime(slime_pos_x, slime_pos_y)
 moving_objects = pygame.sprite.Group()
 moving_objects.add(player)
 
-pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP"}
+pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP", K_SPACE: "UP"}
 
 while running:
     DISPLAYSURF.fill(BACKGROUND)
@@ -290,6 +294,7 @@ while running:
     moving_objects.update()
     moving_objects.draw(DISPLAYSURF)
     pygame.display.flip()
+    print(player.current_sprite)
     clock.tick(FPS)
 
     
