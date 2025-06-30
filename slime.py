@@ -339,7 +339,7 @@ class Slime(pygame.sprite.Sprite):
 
 
         # this stores all the visual that is being put on the display
-        self.image = pygame.Surface((100,100))
+        self.image = pygame.Surface((50,50))
         self.image = self.animations[self.current_animation][self.current_sprite]
         self.rect = self.image.get_rect()
         self.rect.topleft = [self.pos_x, self.pos_y]

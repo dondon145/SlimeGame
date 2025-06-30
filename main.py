@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import slime
+import training_dummy
 
 pygame.init()
 
@@ -283,6 +284,9 @@ slime_pos_y = 350
 player = slime.Slime(slime_pos_x, slime_pos_y)
 moving_objects = pygame.sprite.Group()
 moving_objects.add(player)
+
+training_dummy = training_dummy.Training_Dummy(500,200)
+moving_objects.add(training_dummy)
 
 pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP", K_SPACE: "UP"}
 
