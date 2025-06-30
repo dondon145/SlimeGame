@@ -265,6 +265,12 @@ def events():
             if pressed[K_s]== 'DOWN':
                 pressed[K_s]= 'UP'
 
+        # hit training dummy 
+        if key_list[K_h]== True:
+            if event.type == pygame.KEYDOWN:
+                training_dummy.isIdle = False
+                training_dummy.isHit = True
+
         
             
 WIDTH = 800
