@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import slime
 import training_dummy
+import crosshair
 
 pygame.init()
 
@@ -265,11 +266,23 @@ def events():
             if pressed[K_s]== 'DOWN':
                 pressed[K_s]= 'UP'
 
-        # hit training dummy 
+        # (prototype) hit training dummy 
         if key_list[K_h]== True:
             if event.type == pygame.KEYDOWN:
-                training_dummy.isIdle = False
-                training_dummy.isHit = True
+                training_dum_dum.isIdle = False
+                training_dum_dum.isHit = True
+
+
+        # get mouse button states
+        mouse_list = pygame.mouse.get_pressed(num_buttons= 3)
+        # hit training dummy with mouse
+        if event.type == MOUSEBUTTONDOWN:
+            if mouse_list[0]== True:
+                colliding = pygame.sprite.collide_rect(slime_crosshair, training_dum_dum)
+                if colliding == True:
+                    print("MOUSE")
+                    training_dum_dum.isIdle = False
+                    training_dum_dum.isHit = True
 
         
             
@@ -291,10 +304,14 @@ player = slime.Slime(slime_pos_x, slime_pos_y, 37, 37)
 moving_objects = pygame.sprite.Group()
 moving_objects.add(player)
 
-training_dummy = training_dummy.Training_Dummy(500,200)
-moving_objects.add(training_dummy)
+training_dum_dum = training_dummy.Training_Dummy(500,200)
+slime_crosshair = crosshair.Crosshair()
+moving_objects.add(training_dum_dum)
+moving_objects.add(slime_crosshair)
 
 pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP", K_SPACE: "UP"}
+
+pygame.mouse.set_visible(False)
 
 while running:
     DISPLAYSURF.fill(BACKGROUND)

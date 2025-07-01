@@ -88,7 +88,7 @@ class Training_Dummy(pygame.sprite.Sprite):
         self.all_animations = [self.idle_animation, self.hit_animation]
 
         # Getting frames for animations
-        self.get_idle_frames(100, 33, 36)
+        self.get_idle_frames(100, 33, 34)
         self.get_hit_frames(100, 32, 34)
 
         # Booleans
