@@ -275,6 +275,13 @@ def events():
 
         # get mouse button states
         mouse_list = pygame.mouse.get_pressed(num_buttons= 3)
+
+        # show up crosshair
+        if event.type == MOUSEBUTTONDOWN:
+            if mouse_list[2]== True:
+                moving_objects.add(slime_crosshair)
+
+
         # hit training dummy with mouse
         if event.type == MOUSEBUTTONDOWN:
             if mouse_list[0]== True:
@@ -283,6 +290,12 @@ def events():
                     print("MOUSE")
                     training_dum_dum.isIdle = False
                     training_dum_dum.isHit = True
+
+        # crosshair become invisible until called again
+        if event.type == MOUSEBUTTONUP:
+            if mouse_list[2]== False:
+                slime_crosshair.kill()
+        
 
         
             
@@ -307,7 +320,7 @@ moving_objects.add(player)
 training_dum_dum = training_dummy.Training_Dummy(500,200)
 slime_crosshair = crosshair.Crosshair()
 moving_objects.add(training_dum_dum)
-moving_objects.add(slime_crosshair)
+#moving_objects.add(slime_crosshair)
 
 pressed = {K_a: "UP", K_d: 'UP', K_w: "UP", K_s: "UP", K_SPACE: "UP"}
 
